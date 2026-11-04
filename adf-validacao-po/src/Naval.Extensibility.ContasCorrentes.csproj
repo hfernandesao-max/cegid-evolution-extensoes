@@ -36,6 +36,10 @@
     <Reference Include="$(AplPath)\CctBE100.dll" Private="false" />
     <Reference Include="$(AplPath)\CctBS100.dll" Private="false" />
     <Reference Include="$(AplPath)\ICctBS100.dll" Private="false" />
+    <Reference Include="$(AplPath)\BasBE100.dll" Private="false" />
+    <Reference Include="$(AplPath)\IBasBS100.dll" Private="false" Condition="Exists('$(AplPath)\IBasBS100.dll')" />
+    <!-- tipos dinâmicos (dynamic) usados na leitura do documento: incluído por omissão no csc.exe, não nos projectos SDK -->
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
   <Target Name="VerificarPrimavera" BeforeTargets="ResolveAssemblyReferences" Condition="!Exists('$(AplPath)\StdPlatBS100.dll')">
