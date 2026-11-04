@@ -9,16 +9,17 @@
 
 $Apl   = "C:\Program Files\PRIMAVERA\SG100\Apl"
 $Pasta = "C:\Naval\Extensoes"
-$Src   = Join-Path $Pasta "UiEditorPendentes.cs"
+$Src   = Join-Path $Pasta "*.cs"
 $Out   = Join-Path $Pasta "Naval.Extensibility.ContasCorrentes.dll"
 $Csc   = "$env:WINDIR\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
 
-if (-not (Test-Path $Src)) { Write-Host "Falta o ficheiro $Src" -ForegroundColor Red; exit 1 }
+if (-not (Test-Path (Join-Path $Pasta "UiEditorPendentes.cs"))) { Write-Host "Falta o ficheiro UiEditorPendentes.cs em $Pasta" -ForegroundColor Red; exit 1 }
+if (-not (Test-Path (Join-Path $Pasta "FrmSeleccaoPO.cs")))     { Write-Host "Falta o ficheiro FrmSeleccaoPO.cs em $Pasta" -ForegroundColor Red; exit 1 }
 if (-not (Test-Path $Csc)) { Write-Host "Compilador não encontrado: $Csc" -ForegroundColor Red; exit 1 }
 
 $Padrao = '^(Primavera\.Extensibility\..+|I?StdPlatB[ES]100|StdBE100|ErpBS100|I?CctB[ES]100|BasBE100|IBasBS100)\.dll$'
 $Dlls = Get-ChildItem $Apl -Filter *.dll | Where-Object { $_.Name -match $Padrao }
-$Refs = $Dlls | ForEach-Object { '/r:"' + $_.FullName + '"' }
+$Refs = @($Dlls | ForEach-Object { '/r:"' + $_.FullName + '"' }) + @("/r:System.Windows.Forms.dll", "/r:System.Drawing.dll", "/r:System.Data.dll")
 Write-Host ("Referências encontradas: " + $Dlls.Count) -ForegroundColor Cyan
 
 # Tentativa 1: método de aviso actual (MostraMensagem)
