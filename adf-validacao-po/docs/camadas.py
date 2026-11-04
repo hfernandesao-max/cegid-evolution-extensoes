@@ -5,8 +5,15 @@ H = 841.91998
 # caixas dos botões (pdfplumber: x0, top, x1, bottom) com margem
 def rect(x0, top, x1, bottom, mx=6, my=3):
     return Array([x0-mx, H-(bottom+my), x1+mx, H-(top-my)])
-r_pt = rect(453.3, 42.1, 462.9, 49.6)
-r_en = rect(474.9, 42.1, 485.3, 49.6)
+import pdfplumber
+pos = {}
+with pdfplumber.open(pt_path) as pp:
+    for w in pp.pages[0].extract_words():
+        if w['text'] in ('PT', 'EN') and w['top'] < 80 and w['text'] not in pos:
+            pos[w['text']] = (w['x0'], w['top'], w['x1'], w['bottom'])
+assert len(pos) == 2, pos
+r_pt = rect(*pos['PT'], mx=11, my=4)
+r_en = rect(*pos['EN'], mx=11, my=4)
 
 pdf = pikepdf.open(pt_path)
 en = pikepdf.open(en_path)

@@ -1,0 +1,96 @@
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>Procedure – ADF with PO number</title><style>
+@page { size: A4; margin: 0; }
+:root {
+  --page: #ffffff; --ink: #0b1f3a; --ink-2: #4a5b75; --ink-3: #7c8aa1; --line: #dde4ef;
+  --navy: #273777; --blue: #2397d4; --blue-soft: #e6f2fb; --crit: #b42318; --crit-soft: #fdecec; --ok-soft: #e9eef8;
+  --f: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  --fd: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { background: #fff; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { color: var(--ink); font: 12.4px/1.42 var(--f); -webkit-font-smoothing: antialiased; }
+.folha { width: 210mm; height: 297mm; overflow: hidden; padding: 10mm 14mm 7mm; display: grid; gap: 11px; align-content: start; }
+p { margin: 0; }
+.barra { display: flex; justify-content: space-between; align-items: center; }
+.marca { display: flex; align-items: center; gap: 10px; }
+.marca img { height: 40px; display: block; }
+.marca .t1 { font: 700 12px var(--fd); color: var(--navy); letter-spacing: .02em; }
+.marca .t2 { font-size: 11px; color: var(--blue); }
+.dir { display: flex; align-items: center; gap: 8px; }
+.lingua { display: flex; background: var(--blue-soft); border-radius: 999px; padding: 3px; }
+.lingua span { font: 600 11.5px var(--f); color: var(--ink-2); padding: 4px 13px; border-radius: 999px; }
+.lingua span.on { background: #fff; color: var(--navy); box-shadow: 0 1px 3px rgba(39,55,119,.18); }
+.conf { font: 700 10px var(--f); letter-spacing: .08em; color: #fff; background: var(--navy); border-radius: 999px; padding: 5px 11px; }
+.topo { display: grid; gap: 6px; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+h1 { margin: 0; font: 700 28px/1.1 var(--fd); letter-spacing: -.025em; color: var(--navy); }
+.lead { font-size: 14.2px; color: var(--ink-2); text-align: justify; }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 10.6px; color: var(--ink-3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 6px 0; }
+.meta b { color: var(--ink-2); font-weight: 600; }
+h2 { margin: 0 0 8px; font: 600 11px var(--f); letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); }
+.passos { display: grid; grid-template-columns: minmax(0, 1fr) 232px; gap: 18px; align-items: start; }
+ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; counter-reset: p; }
+li { counter-increment: p; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 11px; align-items: start; }
+li::before { content: counter(p); width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: #fff; font: 600 12.5px/26px var(--fd); text-align: center; }
+li .t { font: 600 13.6px var(--fd); color: var(--navy); letter-spacing: -.01em; margin-bottom: 1px; }
+li p:not(.t) { color: var(--ink-2); text-align: justify; }
+.ui { font-weight: 600; color: var(--ink); background: var(--blue-soft); border-radius: 5px; padding: 0 5px; white-space: nowrap; }
+code { font: 600 11.4px ui-monospace, "SF Mono", Consolas, monospace; color: var(--navy); background: var(--ok-soft); border-radius: 5px; padding: 0 5px; }
+.ecras { display: grid; gap: 8px; }
+figure { margin: 0; }
+figure img { width: 100%; display: block; border-radius: 9px; border: 1px solid var(--line); }
+figcaption { font-size: 10px; color: var(--ink-3); margin-top: 3px; }
+.regras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.regra { background: var(--blue-soft); border-radius: 13px; padding: 10px 13px; display: grid; gap: 2px; }
+.regra strong { font: 700 17px/1.15 var(--fd); color: var(--navy); letter-spacing: -.015em; }
+.regra > span { font-size: 11.6px; color: var(--ink-2); }
+.exemplos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 18px; margin-top: 9px; font-size: 11.8px; color: var(--ink-2); }
+.exemplos p { display: flex; gap: 7px; align-items: baseline; }
+.tag { font: 700 9.5px var(--f); letter-spacing: .05em; text-transform: uppercase; border-radius: 999px; padding: 2px 7px; white-space: nowrap; }
+.tag.ok { background: var(--ok-soft); color: var(--navy); }
+.tag.ko { background: var(--crit-soft); color: var(--crit); }
+.ajuda { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 22px; font-size: 12px; color: var(--ink-2); }
+.ajuda p { text-align: justify; }
+.ajuda b { color: var(--ink); font-weight: 600; }
+.resp { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; font-size: 11.4px; color: var(--ink-2); }
+.resp div { border-left: 3px solid var(--blue); padding-left: 8px; }
+.resp b { display: block; color: var(--navy); font: 600 12px var(--fd); }
+.rodape { border-top: 1px solid var(--line); padding-top: 8px; display: flex; justify-content: space-between; gap: 16px; font-size: 10px; color: var(--ink-3); }
+</style></head><body>
+<main class="folha">
+  <div class="barra">
+    <div class="marca"><img src="naval-logo-claro.png" alt="Naval"><div><div class="t1">GRUPO NAVAL ANGOLA</div><div class="t2">Digital Projects Management</div></div></div>
+    <div class="dir"><div class="lingua"><span class="">PT</span><span class="on">EN</span></div><span class="conf">CONFIDENTIAL</span></div>
+  </div>
+  <div class="topo">
+    <p class="eyebrow">Cegid Evolution ERP Primavera · Current Accounts</p>
+    <h1>Supplier advance payments with the PO number</h1>
+    <p class="lead">Every Supplier Advance Payment (ADF) must now state, in the <span class="ui">Number</span> field, the purchase order (PO) it relates to. The system checks the field on saving and will not save an ADF without a valid PO from the supplier.</p>
+  </div>
+  <div class="meta"><span><b>Procedure</b></span><span>Version: <b>1.0</b></span><span>Date: <b>04-11-2026</b></span><span>Code: <b>To be assigned</b></span><span>Prepared by: <b>Digital Projects Management</b></span><span>Approved by: <b>Henrique Fernandes</b></span><span>Applies to: <b>17 group companies</b></span></div>
+  <section>
+    <h2>Steps</h2>
+    <div class="passos">
+      <ol><li><div><p class="t">Open a new ADF</p><p>In <span class="ui">Current Accounts</span>, open <span class="ui">New Documents</span> and select the <code>ADF</code> document.</p></div></li><li><div><p class="t">Enter the supplier</p><p>In <span class="ui">Entity</span>, select <span class="ui">Supplier</span> and type the code, for example <code>F000201</code>.</p></div></li><li><div><p class="t">Type the PO first</p><p>In the <span class="ui">Number</span> field, delete the suggested number and type the PO in the format <code>TYPE SERIES/NUMBER</code>. Any text may follow the PO, for example the supplier’s pro forma.</p></div></li><li><div><p class="t">Several POs? Use a semicolon</p><p>Example: <code>PO 2026/10; PO 2026/11 - Kituco PP2026B/11-12</code>.</p></div></li><li><div><p class="t">Complete and save</p><p>Fill in the dates, the treasury item and the amount as usual, and click <span class="ui">Save</span>.</p></div></li><li><div><p class="t">If a warning appears</p><p>The ADF is <b>not</b> saved. Close the warning, correct the <span class="ui">Number</span> field and save again.</p></div></li></ol>
+      <div class="ecras">
+        <figure><img src="fig1.png" alt=""><figcaption>With no PO in the Number field, the system does not save.</figcaption></figure>
+        <figure><img src="fig2.png" alt=""><figcaption>PO from another supplier: the warning shows the PO and the supplier.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>The Number field must have</h2>
+    <div class="regras"><div class="regra"><strong>PO at the start</strong><span>types PO, POL, POS, POM, POI or ECF</span></div><div class="regra"><strong>A valid PO</strong><span>exists in this company and is not cancelled</span></div><div class="regra"><strong>Same supplier</strong><span>the PO belongs to the ADF supplier</span></div></div>
+    <div class="exemplos"><p><span class="tag ok">Accepted</span><span><code>PO 2026/756 - Natighe PP 2026A/89</code></span></p><p><span class="tag ko">Rejected</span><span><code>Pag.Natighe PP 2026A/89</code> (no PO)</span></p><p><span class="tag ok">Accepted</span><span><code>PO 2026/10; POL 2026/12</code></span></p><p><span class="tag ko">Rejected</span><span><code>Natighe - PO 2026/756</code> (PO at the end)</span></p></div>
+  </section>
+  <section>
+    <h2>If a warning appears</h2>
+    <div class="ajuda"><p><b>“Must start with the PO number”:</b> type the PO at the start of the field; the supplier reference (PP, ORC, FT) goes after it.</p><p><b>“Does not exist in this company”:</b> check the PO number and type with Procurement, and that you are in the right company.</p><p><b>“Is cancelled”:</b> ask Procurement for the number of the PO that replaced the cancelled one.</p><p><b>“Belongs to supplier X, not Y”:</b> correct the ADF supplier or the PO entered.</p></div>
+  </section>
+  <section>
+    <h2>Responsibilities</h2>
+    <div class="resp"><div><b>Procurement</b>Creates and approves the PO before the advance is requested.</div><div><b>Treasury</b>Records the ADF with the correct PO.</div><div><b>Finance</b>Reviews the list of ADFs without a valid PO every month.</div><div><b>Digital Projects</b>Support and maintenance of the validation.</div></div>
+  </section>
+  <div class="rodape"><span>Confidential document – internal use of Grupo Naval Angola. Copying or disclosure without prior authorisation is prohibited.</span><span>Grupo Naval Angola · 04-11-2026 · v1.0</span></div>
+</main></body></html>
