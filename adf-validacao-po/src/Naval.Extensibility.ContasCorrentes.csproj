@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Extensão ADF / PO – Cegid Evolution ERP Primavera V10
+    Grupo Naval Angola – Gestão de Projectos Digitais. CONFIDENCIAL.
+
+    Bibliotecas do Primavera: por omissão lidas da instalação local (AplPath).
+    Num PC sem Primavera, copiar os .dll da pasta SG100\Apl do servidor para ..\lib
+    (a pasta lib não é versionada) – o projecto usa-a automaticamente.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Naval.Extensibility.ContasCorrentes</AssemblyName>
+    <RootNamespace>Naval.Extensibility.ContasCorrentes</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DefineConstants>$(DefineConstants);NOVA_API</DefineConstants>
+    <!-- Os atributos de versão estão no próprio UiEditorPendentes.cs -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LibLocal>$(MSBuildThisFileDirectory)..\lib</LibLocal>
+    <AplPath Condition="'$(AplPath)' == '' And Exists('$(LibLocal)')">$(LibLocal)</AplPath>
+    <AplPath Condition="'$(AplPath)' == ''">C:\Program Files\PRIMAVERA\SG100\Apl</AplPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(AplPath)\Primavera.Extensibility.*.dll" Private="false" />
+    <Reference Include="$(AplPath)\StdPlatBS100.dll" Private="false" />
+    <Reference Include="$(AplPath)\IStdPlatBS100.dll" Private="false" />
+    <Reference Include="$(AplPath)\StdPlatBE100.dll" Private="false" />
+    <Reference Include="$(AplPath)\StdBE100.dll" Private="false" />
+    <Reference Include="$(AplPath)\ErpBS100.dll" Private="false" />
+    <Reference Include="$(AplPath)\CctBE100.dll" Private="false" />
+    <Reference Include="$(AplPath)\CctBS100.dll" Private="false" />
+    <Reference Include="$(AplPath)\ICctBS100.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="VerificarPrimavera" BeforeTargets="ResolveAssemblyReferences" Condition="!Exists('$(AplPath)\StdPlatBS100.dll')">
+    <Error Text="Bibliotecas do Primavera não encontradas em '$(AplPath)'. Copie os .dll da pasta SG100\Apl do servidor para a pasta 'lib' do projecto." />
+  </Target>
+</Project>

@@ -13,3 +13,6 @@ obj/
 # Sistema
 Thumbs.db
 desktop.ini
+
+# Bibliotecas do Primavera copiadas localmente (licenciadas, não versionar)
+lib/

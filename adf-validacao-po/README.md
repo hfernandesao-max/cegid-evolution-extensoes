@@ -34,7 +34,17 @@ ADF a entidades que não são fornecedores (ex.: conta 349100) não são validad
 | `sql/` | Query de controlo dos ADF sem PO válida (histórico) |
 | `releases/` | `.dll` compilado de cada versão |
 
-## Compilação
+## Compilação no Visual Studio (posto de desenvolvimento)
+
+1. Instalar o Visual Studio Professional com a carga **Desenvolvimento para desktop com .NET** (inclui .NET Framework 4.8).
+2. Se o PC não tiver o Primavera instalado, copiar as bibliotecas do servidor para `lib/`:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File .\copiar-bibliotecas.ps1 -Origem "\\SERVIDOR\c$\Program Files\PRIMAVERA\SG100\Apl"
+   ```
+3. Abrir `Naval.Extensoes.sln`, escolher **Release** e **Build → Build Solution**.
+4. Resultado: `src\bin\Release\Naval.Extensibility.ContasCorrentes.dll`.
+
+## Compilação sem Visual Studio (alternativa)
 
 Usa o compilador C# do .NET Framework incluído no Windows (`csc.exe`); não requer Visual Studio.
 
