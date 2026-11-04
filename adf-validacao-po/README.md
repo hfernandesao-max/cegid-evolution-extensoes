@@ -50,9 +50,20 @@ As bibliotecas de referência são lidas de `C:\Program Files\PRIMAVERA\SG100\Ap
 
 ## Instalação
 
-1. Copiar o `.dll` para `C:\Naval\Extensoes\Producao`.
-2. **Administrador → Extensibilidade / Registo de extensões**: registar o `.dll` e associá-lo às empresas.
-3. Reiniciar o ERP nos postos.
+| Pasta | Utilização |
+|---|---|
+| `C:\Naval\Extensoes` | Área de compilação temporária (até existir posto de desenvolvimento com Visual Studio licenciado) |
+| `C:\Program Files\Naval\Cegid Evolution\Extensoes\vX.Y` | Binário de produção (escrita só para administradores) |
+
+1. Copiar o `.dll` testado para `C:\Program Files\Naval\Cegid Evolution\Extensoes\vX.Y`.
+2. Confirmar o SHA-256 com o registado no CHANGELOG:
+   ```powershell
+   Get-FileHash "C:\Program Files\Naval\Cegid Evolution\Extensoes\v1.1\Naval.Extensibility.ContasCorrentes.dll" -Algorithm SHA256
+   ```
+3. **Administrador → Extensibilidade / Registo de extensões**: remover o registo anterior, registar o `.dll` da pasta de produção e associá-lo às 17 empresas e à PRIFORMACAO.
+4. Reiniciar o ERP nos postos.
+
+**Voltar atrás:** remover o registo e registar o `.dll` da versão anterior (`...\Extensoes\vX.Y` anterior).
 
 **Importante:** em cada nova versão é obrigatório **remover e voltar a registar** a extensão no Administrador. O Primavera guarda uma cópia do `.dll` no registo; substituir o ficheiro no disco não basta.
 
