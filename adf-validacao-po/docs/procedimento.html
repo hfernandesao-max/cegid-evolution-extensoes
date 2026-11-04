@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<title>Procedimento ADF com PO</title>
+<style>
+  @page { size: A4; margin: 8mm 10mm 7mm 10mm; }
+  :root { --navy:#273777; --blue:#2397d4; --light:#eaf3fb; --line:#c9d3e3; --txt:#1d2433; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size: 7.8pt; color: var(--txt); margin: 0; line-height: 1.27; }
+  p, li, td { text-align: justify; }
+  .top { display:flex; justify-content:space-between; align-items:flex-end; border-bottom: 2.2pt solid var(--navy); padding-bottom: 3pt; }
+  .brand { font-weight:700; color:var(--navy); font-size:9pt; letter-spacing:.3pt; }
+  .brand span { color:var(--blue); }
+  .conf { font-size:7pt; font-weight:700; color:#fff; background:var(--navy); padding:2pt 6pt; border-radius:2pt; letter-spacing:.4pt; }
+  h1 { font-size: 12.5pt; color: var(--navy); margin: 5pt 0 4pt; text-align:left; }
+  table { border-collapse: collapse; width: 100%; }
+  .ctrl td { border: .6pt solid var(--line); padding: 2pt 4pt; font-size: 7.5pt; text-align:left; }
+  .ctrl td.k { background: var(--light); color: var(--navy); font-weight: 700; width: 13%; }
+  h2 { font-size: 8.4pt; color: #fff; background: var(--navy); margin: 4pt 0 2pt; padding: 1.6pt 5pt; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 9pt; }
+  p { margin: 0 0 2.5pt; }
+  ul, ol { margin: 0 0 2.5pt; padding-left: 12pt; }
+  li { margin: 0 0 1pt; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 7.6pt; background: #f1f4f9; padding: 0 2pt; border-radius: 1.5pt; color: var(--navy); }
+  .grid td, .grid th { border: .6pt solid var(--line); padding: 1.8pt 4pt; vertical-align: top; font-size: 7.6pt; }
+  .grid th { background: var(--navy); color: #fff; text-align: left; font-weight: 700; }
+  .grid td.n { width: 14pt; text-align: center; font-weight: 700; color: var(--navy); }
+  .ok { color: var(--navy); font-weight:700; }
+  .ko { color: #b42318; font-weight:700; }
+  .proc { display: grid; grid-template-columns: 1.55fr 1fr; column-gap: 8pt; align-items: start; }
+  figure { margin: 0 0 3pt; }
+  figure img { width: 100%; border: .6pt solid var(--line); display:block; }
+  figcaption { font-size: 6.8pt; color: #4a5568; margin-top: 1.2pt; text-align:left; }
+  .sig { display:grid; grid-template-columns: 1fr 1fr; gap: 10pt; margin-top: 11pt; }
+  .sig div { border-top: .6pt solid var(--txt); padding-top: 1.5pt; font-size: 7pt; text-align:center; }
+  .foot { margin-top: 4pt; border-top: .6pt solid var(--line); padding-top: 2pt; font-size: 6.6pt; color:#4a5568; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brand">GRUPO NAVAL ANGOLA <span>· Gestão de Projectos Digitais</span></div>
+  <div class="conf">CONFIDENCIAL</div>
+</div>
+
+<h1>Procedimento – Registo de Adiantamentos a Fornecedor (ADF) com n.º de PO</h1>
+
+<table class="ctrl">
+  <tr><td class="k">Código</td><td>A atribuir</td><td class="k">Versão</td><td>1.0</td><td class="k">Data</td><td>04-11-2026</td></tr>
+  <tr><td class="k">Elaborado por</td><td>Gestão de Projectos Digitais</td><td class="k">Aprovado por</td><td>Henrique Fernandes</td><td class="k">Aplicação</td><td>Cegid Evolution ERP Primavera – Contas Correntes</td></tr>
+</table>
+
+<div class="cols">
+  <div>
+    <h2>1. Objectivo</h2>
+    <p>Garantir que cada Adiantamento a Fornecedor (ADF) identifica a encomenda (PO) a que se refere, para acompanhar os pagamentos antecipados, agilizar a conciliação entre Compras, Tesouraria e Contabilidade e evitar atrasos no processamento.</p>
+
+    <h2>2. Âmbito</h2>
+    <p>Aplica-se ao registo e à alteração de ADF a entidades do tipo <b>Fornecedor</b>, nas 17 empresas do grupo no Cegid Evolution ERP Primavera. Não se aplica a ADF a outras entidades (ex.: conta 349100).</p>
+
+    <h2>3. Definições</h2>
+    <ul>
+      <li><b>ADF</b> – Adiantamento a Fornecedor, registado em Contas Correntes.</li>
+      <li><b>PO</b> – Encomenda a fornecedor no Primavera: tipos <code>PO</code>, <code>POL</code>, <code>POS</code>, <code>POM</code>, <code>POI</code> e <code>ECF</code>.</li>
+      <li><b>Campo Número</b> – "Número do Documento" do ADF, onde se indica a PO.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>4. Responsabilidades</h2>
+    <ul>
+      <li><b>Compras</b> – registar e aprovar a PO no Primavera antes do pedido de adiantamento e indicar o seu n.º.</li>
+      <li><b>Tesouraria / Contas a Pagar</b> – registar o ADF com a PO correcta no campo Número.</li>
+      <li><b>Finanças</b> – rever mensalmente a lista de ADF sem PO válida.</li>
+      <li><b>Gestão de Projectos Digitais</b> – suporte e manutenção da validação no ERP.</li>
+    </ul>
+
+    <h2>5. Pré-requisitos</h2>
+    <ul>
+      <li>A PO existe na mesma empresa, <b>não está anulada</b> e é do <b>mesmo fornecedor</b> do ADF.</li>
+      <li>Utilizador com acesso ao registo de documentos em Contas Correntes.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>6. Procedimento</h2>
+<div class="proc">
+  <table class="grid">
+    <tr><th>#</th><th>Acção</th></tr>
+    <tr><td class="n">1</td><td>Em <b>Contas Correntes</b>, abrir <b>Novos Documentos</b> e escolher o documento <code>ADF</code>.</td></tr>
+    <tr><td class="n">2</td><td>Em <b>Entidade</b>, seleccionar <b>Fornecedor</b> e indicar o código (ex.: <code>F000201</code>).</td></tr>
+    <tr><td class="n">3</td><td>No campo <b>Número</b>, apagar o número sugerido pelo sistema e escrever primeiro a(s) PO, no formato <code>TIPO SÉRIE/NÚMERO</code>. Depois da PO, o texto é livre (ex.: proforma do fornecedor).</td></tr>
+    <tr><td class="n">4</td><td>Várias PO no mesmo ADF: separar com ponto e vírgula, ex.: <code>PO 2026/10; PO 2026/11 - Kituco PP2026B/11-12</code>.</td></tr>
+    <tr><td class="n">5</td><td>Preencher datas, item de tesouraria e valor, como habitualmente, e carregar em <b>Gravar</b>.</td></tr>
+    <tr><td class="n">6</td><td>Se aparecer um aviso, o ADF <b>não</b> fica gravado: fechar o aviso, corrigir o campo Número conforme o ponto 7 e gravar de novo.</td></tr>
+  </table>
+  <div>
+    <figure><img src="fig1.png" alt="ADF sem PO no campo Número e aviso do sistema"><figcaption>Fig. 1 – ADF sem PO no campo Número: o sistema não deixa gravar.</figcaption></figure>
+    <figure><img src="fig2.png" alt="Aviso de PO de outro fornecedor"><figcaption>Fig. 2 – PO de outro fornecedor: o aviso indica a PO e o fornecedor correcto.</figcaption></figure>
+  </div>
+</div>
+
+<h2>7. Regra do campo Número e mensagens de validação</h2>
+<table class="grid">
+  <tr><th style="width:36%">Texto no campo Número / aviso</th><th style="width:12%">Resultado</th><th>Como corrigir</th></tr>
+  <tr><td><code>PO 2026/756 - Natighe PP 2026A/89</code></td><td class="ok">Aceite</td><td>Começa pela PO; o resto do texto é livre.</td></tr>
+  <tr><td><code>PO 2026/10; POL 2026/12 - Kituco</code></td><td class="ok">Aceite</td><td>Várias PO válidas do fornecedor, separadas por <code>;</code>.</td></tr>
+  <tr><td><code>Pag.Natighe PP 2026A/89</code> ou <code>13046653</code> – "tem de começar pelo n.º da PO"</td><td class="ko">Recusado</td><td>Escrever a PO no início do campo. A referência do fornecedor (PP, ORC, FT) pode ficar depois da PO.</td></tr>
+  <tr><td>"… não existe nesta empresa"</td><td class="ko">Recusado</td><td>Confirmar o n.º e o tipo da PO com Compras e se o ADF está a ser registado na empresa certa.</td></tr>
+  <tr><td>"… está anulada"</td><td class="ko">Recusado</td><td>Pedir a Compras o n.º da PO em vigor que substituiu a anulada.</td></tr>
+  <tr><td>"… pertence ao fornecedor X e não a Y"</td><td class="ko">Recusado</td><td>Corrigir o fornecedor do ADF ou a PO indicada.</td></tr>
+</table>
+
+<div class="cols">
+  <div>
+    <h2>8. Verificações de controlo</h2>
+    <ul>
+      <li>A validação é automática ao gravar ADF novos ou alterados.</li>
+      <li>Finanças revê mensalmente a lista <b>ADF sem PO válida</b> e pede a correcção dos adiantamentos anteriores à entrada em vigor, começando pelos que têm valor por regularizar.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>9. Notas</h2>
+    <ul>
+      <li>Adiantamento sem PO: não é permitido; a PO tem de ser registada primeiro por Compras.</li>
+      <li>Dúvidas ou erros do sistema: contactar a Gestão de Projectos Digitais.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="cols"><div>
+<h2>10. Histórico de revisões</h2>
+<table class="grid"><tr><th style="width:14%">Versão</th><th style="width:22%">Data</th><th>Descrição</th></tr>
+<tr><td>1.0</td><td>04-11-2026</td><td>Versão inicial.</td></tr></table>
+</div><div>
+<h2>Aprovação</h2>
+<div class="sig">
+  <div>Elaborado por<br>Gestão de Projectos Digitais</div>
+  <div>Aprovado por<br>Henrique Fernandes</div>
+</div></div></div>
+
+<div class="foot"><span>Documento confidencial – uso interno do Grupo Naval Angola. Proibida a divulgação a terceiros.</span><span>PROC – ADF com n.º de PO · v1.0 · Pág. 1/1</span></div>
+
+</body>
+</html>
