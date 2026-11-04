@@ -1,0 +1,15 @@
+# Artefactos de compilação (apenas os .dll em releases/ são versionados)
+bin/
+obj/
+*.pdb
+*.dll
+!**/releases/**/*.dll
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Sistema
+Thumbs.db
+desktop.ini
