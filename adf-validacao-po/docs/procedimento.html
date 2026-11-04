@@ -11,7 +11,9 @@
   p, li, td { text-align: justify; }
   .top { display:flex; justify-content:space-between; align-items:flex-end; border-bottom: 2.2pt solid var(--navy); padding-bottom: 3pt; }
   .brand { font-weight:700; color:var(--navy); font-size:9pt; letter-spacing:.3pt; }
-  .brand span { color:var(--blue); }
+  .brand span { color:var(--blue); font-weight:400; font-size:8pt; }
+  .brandrow { display:flex; align-items:center; gap:7pt; }
+  .logo { height: 34pt; display:block; }
   .conf { font-size:7pt; font-weight:700; color:#fff; background:var(--navy); padding:2pt 6pt; border-radius:2pt; letter-spacing:.4pt; }
   h1 { font-size: 12.5pt; color: var(--navy); margin: 5pt 0 4pt; text-align:left; }
   table { border-collapse: collapse; width: 100%; }
@@ -40,7 +42,7 @@
 <body>
 
 <div class="top">
-  <div class="brand">GRUPO NAVAL ANGOLA <span>· Gestão de Projectos Digitais</span></div>
+  <div class="brandrow"><img class="logo" src="naval-logo-claro.png" alt="Naval"><div class="brand">GRUPO NAVAL ANGOLA<br><span>Gestão de Projectos Digitais</span></div></div>
   <div class="conf">CONFIDENCIAL</div>
 </div>
 
