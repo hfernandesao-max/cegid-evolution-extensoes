@@ -4,16 +4,20 @@
 <meta charset="utf-8">
 <title>Procedimento ADF com PO</title>
 <style>
-  @page { size: A4; margin: 8mm 10mm 7mm 10mm; }
+  @page { size: A4; margin: 7mm 10mm 6mm 10mm; }
   :root { --navy:#273777; --blue:#2397d4; --light:#eaf3fb; --line:#c9d3e3; --txt:#1d2433; }
   * { box-sizing: border-box; }
-  body { font-family: Arial, Helvetica, sans-serif; font-size: 7.8pt; color: var(--txt); margin: 0; line-height: 1.27; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size: 7.6pt; color: var(--txt); margin: 0; line-height: 1.25; }
   p, li, td { text-align: justify; }
   .top { display:flex; justify-content:space-between; align-items:flex-end; border-bottom: 2.2pt solid var(--navy); padding-bottom: 3pt; }
   .brand { font-weight:700; color:var(--navy); font-size:9pt; letter-spacing:.3pt; }
   .brand span { color:var(--blue); font-weight:400; font-size:8pt; }
   .brandrow { display:flex; align-items:center; gap:7pt; }
   .logo { height: 34pt; display:block; }
+  .hr { display:flex; align-items:center; gap:6pt; }
+  .lang { display:flex; border:.8pt solid var(--navy); border-radius:2pt; overflow:hidden; font-size:7.5pt; font-weight:700; }
+  .lang span { padding:2pt 6pt; color:var(--navy); background:#fff; }
+  .lang span.on { background:var(--navy); color:#fff; }
   .conf { font-size:7pt; font-weight:700; color:#fff; background:var(--navy); padding:2pt 6pt; border-radius:2pt; letter-spacing:.4pt; }
   h1 { font-size: 12.5pt; color: var(--navy); margin: 5pt 0 4pt; text-align:left; }
   table { border-collapse: collapse; width: 100%; }
@@ -34,7 +38,7 @@
   figure { margin: 0 0 3pt; }
   figure img { width: 100%; border: .6pt solid var(--line); display:block; }
   figcaption { font-size: 6.8pt; color: #4a5568; margin-top: 1.2pt; text-align:left; }
-  .sig { display:grid; grid-template-columns: 1fr 1fr; gap: 10pt; margin-top: 11pt; }
+  .sig { display:grid; grid-template-columns: 1fr 1fr; gap: 10pt; margin-top: 5pt; }
   .sig div { border-top: .6pt solid var(--txt); padding-top: 1.5pt; font-size: 7pt; text-align:center; }
   .foot { margin-top: 4pt; border-top: .6pt solid var(--line); padding-top: 2pt; font-size: 6.6pt; color:#4a5568; display:flex; justify-content:space-between; }
 </style>
@@ -43,7 +47,7 @@
 
 <div class="top">
   <div class="brandrow"><img class="logo" src="naval-logo-claro.png" alt="Naval"><div class="brand">GRUPO NAVAL ANGOLA<br><span>Gestão de Projectos Digitais</span></div></div>
-  <div class="conf">CONFIDENCIAL</div>
+  <div class="hr"><div class="lang"><span class="on">PT</span><span>EN</span></div><div class="conf">CONFIDENCIAL</div></div>
 </div>
 
 <h1>Procedimento – Registo de Adiantamentos a Fornecedor (ADF) com n.º de PO</h1>

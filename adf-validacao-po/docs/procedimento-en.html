@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>ADF with PO procedure</title>
+<style>
+  @page { size: A4; margin: 7mm 10mm 6mm 10mm; }
+  :root { --navy:#273777; --blue:#2397d4; --light:#eaf3fb; --line:#c9d3e3; --txt:#1d2433; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size: 7.6pt; color: var(--txt); margin: 0; line-height: 1.25; }
+  p, li, td { text-align: justify; }
+  .top { display:flex; justify-content:space-between; align-items:flex-end; border-bottom: 2.2pt solid var(--navy); padding-bottom: 3pt; }
+  .brand { font-weight:700; color:var(--navy); font-size:9pt; letter-spacing:.3pt; }
+  .brand span { color:var(--blue); font-weight:400; font-size:8pt; }
+  .brandrow { display:flex; align-items:center; gap:7pt; }
+  .logo { height: 34pt; display:block; }
+  .hr { display:flex; align-items:center; gap:6pt; }
+  .lang { display:flex; border:.8pt solid var(--navy); border-radius:2pt; overflow:hidden; font-size:7.5pt; font-weight:700; }
+  .lang span { padding:2pt 6pt; color:var(--navy); background:#fff; }
+  .lang span.on { background:var(--navy); color:#fff; }
+  .conf { font-size:7pt; font-weight:700; color:#fff; background:var(--navy); padding:2pt 6pt; border-radius:2pt; letter-spacing:.4pt; }
+  h1 { font-size: 12.5pt; color: var(--navy); margin: 5pt 0 4pt; text-align:left; }
+  table { border-collapse: collapse; width: 100%; }
+  .ctrl td { border: .6pt solid var(--line); padding: 2pt 4pt; font-size: 7.5pt; text-align:left; }
+  .ctrl td.k { background: var(--light); color: var(--navy); font-weight: 700; width: 13%; }
+  h2 { font-size: 8.4pt; color: #fff; background: var(--navy); margin: 4pt 0 2pt; padding: 1.6pt 5pt; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 9pt; }
+  p { margin: 0 0 2.5pt; }
+  ul, ol { margin: 0 0 2.5pt; padding-left: 12pt; }
+  li { margin: 0 0 1pt; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 7.6pt; background: #f1f4f9; padding: 0 2pt; border-radius: 1.5pt; color: var(--navy); }
+  .grid td, .grid th { border: .6pt solid var(--line); padding: 1.8pt 4pt; vertical-align: top; font-size: 7.6pt; }
+  .grid th { background: var(--navy); color: #fff; text-align: left; font-weight: 700; }
+  .grid td.n { width: 14pt; text-align: center; font-weight: 700; color: var(--navy); }
+  .ok { color: var(--navy); font-weight:700; }
+  .ko { color: #b42318; font-weight:700; }
+  .proc { display: grid; grid-template-columns: 1.55fr 1fr; column-gap: 8pt; align-items: start; }
+  figure { margin: 0 0 3pt; }
+  figure img { width: 100%; border: .6pt solid var(--line); display:block; }
+  figcaption { font-size: 6.8pt; color: #4a5568; margin-top: 1.2pt; text-align:left; }
+  .sig { display:grid; grid-template-columns: 1fr 1fr; gap: 10pt; margin-top: 5pt; }
+  .sig div { border-top: .6pt solid var(--txt); padding-top: 1.5pt; font-size: 7pt; text-align:center; }
+  .foot { margin-top: 4pt; border-top: .6pt solid var(--line); padding-top: 2pt; font-size: 6.6pt; color:#4a5568; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brandrow"><img class="logo" src="naval-logo-claro.png" alt="Naval"><div class="brand">GRUPO NAVAL ANGOLA<br><span>Digital Projects Management</span></div></div>
+  <div class="hr"><div class="lang"><span>PT</span><span class="on">EN</span></div><div class="conf">CONFIDENTIAL</div></div>
+</div>
+
+<h1>Procedure – Recording Supplier Advance Payments (ADF) with the PO number</h1>
+
+<table class="ctrl">
+  <tr><td class="k">Code</td><td>To be assigned</td><td class="k">Version</td><td>1.0</td><td class="k">Date</td><td>04-11-2026</td></tr>
+  <tr><td class="k">Prepared by</td><td>Digital Projects Management</td><td class="k">Approved by</td><td>Henrique Fernandes</td><td class="k">Application</td><td>Cegid Evolution ERP Primavera – Contas Correntes (Accounts Payable/Receivable)</td></tr>
+</table>
+
+<div class="cols">
+  <div>
+    <h2>1. Purpose</h2>
+    <p>To ensure that every Supplier Advance Payment (ADF) identifies the purchase order (PO) it relates to, so that advance payments can be tracked, reconciliation between Procurement, Treasury and Accounting is faster, and processing delays are avoided.</p>
+
+    <h2>2. Scope</h2>
+    <p>Applies to creating and changing ADFs for <b>Fornecedor</b> (Supplier) entities in the 17 group companies on Cegid Evolution ERP Primavera. It does not apply to ADFs for other entities (e.g. account 349100).</p>
+
+    <h2>3. Definitions</h2>
+    <ul>
+      <li><b>ADF</b> – Adiantamento a Fornecedor (Supplier Advance Payment), recorded in Contas Correntes.</li>
+      <li><b>PO</b> – Purchase order in Primavera: types <code>PO</code>, <code>POL</code>, <code>POS</code>, <code>POM</code>, <code>POI</code> and <code>ECF</code>.</li>
+      <li><b>Número field</b> – the ADF "Número do Documento" (Document Number), where the PO is entered.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>4. Responsibilities</h2>
+    <ul>
+      <li><b>Procurement</b> – create and approve the PO in Primavera before the advance is requested, and provide its number.</li>
+      <li><b>Treasury / Accounts Payable</b> – record the ADF with the correct PO in the Número field.</li>
+      <li><b>Finance</b> – review the list of ADFs without a valid PO every month.</li>
+      <li><b>Digital Projects Management</b> – support and maintenance of the ERP validation.</li>
+    </ul>
+
+    <h2>5. Prerequisites</h2>
+    <ul>
+      <li>The PO exists in the same company, <b>is not cancelled</b> and belongs to the <b>same supplier</b> as the ADF.</li>
+      <li>User with access to record documents in Contas Correntes.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>6. Procedure</h2>
+<div class="proc">
+  <table class="grid">
+    <tr><th>#</th><th>Action</th></tr>
+    <tr><td class="n">1</td><td>In <b>Contas Correntes</b>, open <b>Novos Documentos</b> (New Documents) and select the <code>ADF</code> document.</td></tr>
+    <tr><td class="n">2</td><td>In <b>Entidade</b> (Entity), select <b>Fornecedor</b> (Supplier) and enter the code (e.g. <code>F000201</code>).</td></tr>
+    <tr><td class="n">3</td><td>In the <b>Número</b> field, delete the number suggested by the system and type the PO(s) first, in the format <code>TYPE SERIES/NUMBER</code>. After the PO, any text may follow (e.g. the supplier pro forma).</td></tr>
+    <tr><td class="n">4</td><td>Several POs in the same ADF: separate them with a semicolon, e.g. <code>PO 2026/10; PO 2026/11 - Kituco PP2026B/11-12</code>.</td></tr>
+    <tr><td class="n">5</td><td>Fill in the dates, treasury item and amount as usual, and click <b>Gravar</b> (Save).</td></tr>
+    <tr><td class="n">6</td><td>If a warning appears, the ADF is <b>not</b> saved: close the warning, correct the Número field as shown in section 7 and save again.</td></tr>
+  </table>
+  <div>
+    <figure><img src="fig1.png" alt="ADF without a PO in the Número field and system warning"><figcaption>Fig. 1 – ADF without a PO in the Número field: the system does not allow saving.</figcaption></figure>
+    <figure><img src="fig2.png" alt="Warning for a PO of another supplier"><figcaption>Fig. 2 – PO of another supplier: the warning shows the PO and the correct supplier.</figcaption></figure>
+  </div>
+</div>
+
+<h2>7. Número field rule and validation messages</h2>
+<table class="grid">
+  <tr><th style="width:36%">Text in the Número field / warning</th><th style="width:12%">Result</th><th>How to correct</th></tr>
+  <tr><td><code>PO 2026/756 - Natighe PP 2026A/89</code></td><td class="ok">Accepted</td><td>Starts with the PO; the rest of the text is free.</td></tr>
+  <tr><td><code>PO 2026/10; POL 2026/12 - Kituco</code></td><td class="ok">Accepted</td><td>Several valid POs of the supplier, separated by <code>;</code>.</td></tr>
+  <tr><td><code>Pag.Natighe PP 2026A/89</code> or <code>13046653</code> – "tem de começar pelo n.º da PO" (must start with the PO number)</td><td class="ko">Rejected</td><td>Type the PO at the start of the field. The supplier reference (PP, ORC, FT) may follow the PO.</td></tr>
+  <tr><td>"… não existe nesta empresa" (does not exist in this company)</td><td class="ko">Rejected</td><td>Confirm the PO number and type with Procurement, and that the ADF is being recorded in the right company.</td></tr>
+  <tr><td>"… está anulada" (is cancelled)</td><td class="ko">Rejected</td><td>Ask Procurement for the number of the current PO that replaced the cancelled one.</td></tr>
+  <tr><td>"… pertence ao fornecedor X e não a Y" (belongs to supplier X, not Y)</td><td class="ko">Rejected</td><td>Correct the ADF supplier or the PO entered.</td></tr>
+</table>
+
+<div class="cols">
+  <div>
+    <h2>8. Control checks</h2>
+    <ul>
+      <li>Validation is automatic when new or changed ADFs are saved.</li>
+      <li>Finance reviews the <b>ADFs without a valid PO</b> list every month and requests correction of advances recorded before this procedure took effect, starting with those with an amount still to be settled.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>9. Notes</h2>
+    <ul>
+      <li>Advance without a PO: not allowed; Procurement must create the PO first.</li>
+      <li>Questions or system errors: contact Digital Projects Management.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="cols"><div>
+<h2>10. Revision history</h2>
+<table class="grid"><tr><th style="width:14%">Version</th><th style="width:22%">Date</th><th>Description</th></tr>
+<tr><td>1.0</td><td>04-11-2026</td><td>Initial version.</td></tr></table>
+</div><div>
+<h2>Approval</h2>
+<div class="sig">
+  <div>Prepared by<br>Digital Projects Management</div>
+  <div>Approved by<br>Henrique Fernandes</div>
+</div></div></div>
+
+<div class="foot"><span>Confidential document – internal use of Grupo Naval Angola. Disclosure to third parties is prohibited.</span><span>PROC – ADF with PO number · v1.0 · Page 1/1</span></div>
+
+</body>
+</html>
