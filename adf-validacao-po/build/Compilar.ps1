@@ -19,7 +19,7 @@ if (-not (Test-Path $Csc)) { Write-Host "Compilador não encontrado: $Csc" -Fore
 
 $Padrao = '^(Primavera\.Extensibility\..+|I?StdPlatB[ES]100|StdBE100|ErpBS100|I?CctB[ES]100|BasBE100|IBasBS100)\.dll$'
 $Dlls = Get-ChildItem $Apl -Filter *.dll | Where-Object { $_.Name -match $Padrao }
-$Refs = @($Dlls | ForEach-Object { '/r:"' + $_.FullName + '"' }) + @("/r:System.Windows.Forms.dll", "/r:System.Drawing.dll", "/r:System.Data.dll")
+$Refs = @($Dlls | ForEach-Object { '/r:"' + $_.FullName + '"' }) + @("/r:System.Windows.Forms.dll", "/r:System.Drawing.dll", "/r:System.Data.dll", "/r:Microsoft.CSharp.dll", "/r:System.Core.dll")
 Write-Host ("Referências encontradas: " + $Dlls.Count) -ForegroundColor Cyan
 
 # Tentativa 1: método de aviso actual (MostraMensagem)

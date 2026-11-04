@@ -7,7 +7,6 @@
 # ============================================================
 $Pasta = "C:\Naval\Extensoes"
 if (-not (Test-Path $Pasta)) { New-Item -ItemType Directory -Path $Pasta | Out-Null }
-
 $f1 = @'
 // ============================================================
 //  Naval.Extensibility.ContasCorrentes
@@ -418,7 +417,6 @@ namespace Naval.Extensibility.ContasCorrentes
 }
 '@
 Set-Content -Path (Join-Path $Pasta "UiEditorPendentes.cs") -Value $f1 -Encoding UTF8
-
 $f2 = @'
 // ============================================================
 //  Janela de selecção de PO do fornecedor (várias linhas).
@@ -634,7 +632,6 @@ namespace Naval.Extensibility.ContasCorrentes
 }
 '@
 Set-Content -Path (Join-Path $Pasta "FrmSeleccaoPO.cs") -Value $f2 -Encoding UTF8
-
 $f3 = @'
 # ============================================================
 #  Compilação da extensão ADF / PO – Cegid Evolution ERP Primavera V10
@@ -657,7 +654,7 @@ if (-not (Test-Path $Csc)) { Write-Host "Compilador não encontrado: $Csc" -Fore
 
 $Padrao = '^(Primavera\.Extensibility\..+|I?StdPlatB[ES]100|StdBE100|ErpBS100|I?CctB[ES]100|BasBE100|IBasBS100)\.dll$'
 $Dlls = Get-ChildItem $Apl -Filter *.dll | Where-Object { $_.Name -match $Padrao }
-$Refs = @($Dlls | ForEach-Object { '/r:"' + $_.FullName + '"' }) + @("/r:System.Windows.Forms.dll", "/r:System.Drawing.dll", "/r:System.Data.dll")
+$Refs = @($Dlls | ForEach-Object { '/r:"' + $_.FullName + '"' }) + @("/r:System.Windows.Forms.dll", "/r:System.Drawing.dll", "/r:System.Data.dll", "/r:Microsoft.CSharp.dll", "/r:System.Core.dll")
 Write-Host ("Referências encontradas: " + $Dlls.Count) -ForegroundColor Cyan
 
 # Tentativa 1: método de aviso actual (MostraMensagem)
@@ -682,6 +679,5 @@ if ($LASTEXITCODE -eq 0) {
 }
 '@
 Set-Content -Path (Join-Path $Pasta "Compilar.ps1") -Value $f3 -Encoding UTF8
-
 Write-Host "Ficheiros v1.2 criados em $Pasta" -ForegroundColor Cyan
 powershell -ExecutionPolicy Bypass -File (Join-Path $Pasta "Compilar.ps1")
